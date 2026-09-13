@@ -1,0 +1,10 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import coffeeImage from "../assets/surf-cafe-coffee-demo.jpg";
+import { Button } from "../components/ui/button";
+
+export const Route = createFileRoute("/sobre")({
+  head: () => ({ meta: [{ title: "Sobre o Surf Café | Nampula" }, { name: "description", content: "Conheça a experiência do Surf Café, um espaço para saborear, relaxar e partilhar bons momentos em Nampula." }, { property: "og:title", content: "Sobre o Surf Café | Nampula" }, { property: "og:description", content: "Um espaço para saborear, relaxar e partilhar bons momentos em Nampula." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }], links: [{ rel: "canonical", href: "/sobre" }] }),
+  component: Sobre,
+});
+
+function Sobre() { return <div><section className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2 md:items-center md:py-28"><div><p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Sobre</p><h1 className="mt-5 font-serif text-6xl font-extrabold italic leading-[0.9] md:text-8xl">Sobre o<br/>Surf Café</h1><p className="mt-8 max-w-lg text-lg leading-8 text-foreground/75">Um espaço para saborear, relaxar e partilhar bons momentos em Nampula.</p><p className="mt-5 max-w-lg font-mono text-xs leading-6 text-muted-foreground">Restaurante, café e bar reunidos numa experiência contemporânea e descontraída.</p><Button asChild className="mt-8 h-12 rounded-none px-6 font-mono text-[10px] uppercase tracking-[0.15em]"><Link to="/menu">Conhecer o menu</Link></Button></div><figure><img src={coffeeImage} width={800} height={800} className="aspect-square w-full object-cover" alt="Imagem de demonstração da experiência de café"/><figcaption className="mt-2 font-mono text-[9px] uppercase tracking-[0.15em] text-muted-foreground">Imagem de demonstração — aguardamos fotografias oficiais</figcaption></figure></section></div>; }
