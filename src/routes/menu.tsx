@@ -1,0 +1,20 @@
+import { useMemo, useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { Search } from "lucide-react";
+import { Button } from "../components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../components/ui/dialog";
+import { menuCategories, menuItems, type MenuItem, whatsappUrl } from "../data/restaurant";
+
+export const Route = createFileRoute("/menu")({
+  head: () => ({ meta: [{ title: "Menu do Surf Café | Preços em MT" }, { name: "description", content: "Consulte o menu confirmado do Surf Café em Nampula, com pesquisa e preços em MT." }, { property: "og:title", content: "Menu do Surf Café | Preços em MT" }, { property: "og:description", content: "Pesquise pratos e bebidas do Surf Café em Nampula." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }], links: [{ rel: "canonical", href: "/menu" }] }), component: MenuPage,
+});
+
+function MenuPage() {
+  const [query, setQuery] = useState(""); const [category, setCategory] = useState("Todas"); const [selected, setSelected] = useState<MenuItem | null>(null);
+  const filtered = useMemo(() => menuItems.filter((item) => (category === "Todas" || item.category === category) && item.name.toLocaleLowerCase("pt").includes(query.trim().toLocaleLowerCase("pt"))), [query, category]);
+  return <div className="mx-auto max-w-6xl px-6 py-16 md:py-24"><div className="max-w-3xl"><p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Menu digital</p><h1 className="mt-5 font-serif text-6xl font-extrabold italic md:text-8xl">O Menu</h1><p className="mt-6 max-w-xl text-sm leading-6 text-muted-foreground">Estão publicados apenas os pratos e preços confirmados. O menu integral será acrescentado após a receção e leitura das 17 páginas oficiais.</p></div>
+  <div className="relative mt-10"><Search className="absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"/><input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder="Pesquisar prato ou bebida…" className="h-14 w-full border border-input bg-background pl-11 pr-4 text-sm outline-none focus:ring-2 focus:ring-ring" aria-label="Pesquisar no menu"/></div>
+  <div className="-mx-6 mt-5 flex gap-2 overflow-x-auto px-6 pb-3">{menuCategories.map((cat)=><Button key={cat} size="sm" variant={category===cat?"default":"outline"} onClick={()=>setCategory(cat)} className="shrink-0 rounded-none font-mono text-[9px] uppercase tracking-[0.1em]">{cat}</Button>)}</div>
+  <div className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">{filtered.map((item)=><button key={item.name} onClick={()=>setSelected(item)} className="group border-l-2 border-border pl-5 text-left transition-colors hover:border-primary"><div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4"><h2 className="min-w-0 text-lg font-bold uppercase leading-snug">{item.name}</h2><span className="shrink-0 font-mono text-xs font-bold">{item.price}</span></div><p className="mt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{item.category} · Ver detalhes</p></button>)}</div>{filtered.length===0&&<p className="mt-16 text-center font-serif text-2xl italic text-muted-foreground">Nenhum item confirmado corresponde à pesquisa.</p>}
+  <Dialog open={Boolean(selected)} onOpenChange={(open)=>!open&&setSelected(null)}><DialogContent className="max-w-md rounded-none"><DialogHeader><p className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground">{selected?.category}</p><DialogTitle className="font-serif text-3xl font-bold italic leading-tight">{selected?.name}</DialogTitle><DialogDescription className="pt-3 font-mono text-sm font-bold text-foreground">{selected?.price}</DialogDescription></DialogHeader>{selected&&<Button asChild className="mt-4 h-12 rounded-none font-mono text-[10px] uppercase tracking-[0.12em]"><a href={whatsappUrl(`Olá Surf Café! Gostaria de saber mais sobre ${selected.name}.`)} target="_blank" rel="noreferrer">Perguntar pelo WhatsApp</a></Button>}</DialogContent></Dialog></div>;
+}

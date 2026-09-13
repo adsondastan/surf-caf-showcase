@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactosRouteImport } from './routes/contactos'
+import { Route as GaleriaRouteImport } from './routes/galeria'
+import { Route as LocalizacaoRouteImport } from './routes/localizacao'
+import { Route as MenuRouteImport } from './routes/menu'
+import { Route as ReservasRouteImport } from './routes/reservas'
+import { Route as SobreRouteImport } from './routes/sobre'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactosRoute = ContactosRouteImport.update({
+  id: '/contactos',
+  path: '/contactos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaRoute = GaleriaRouteImport.update({
+  id: '/galeria',
+  path: '/galeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocalizacaoRoute = LocalizacaoRouteImport.update({
+  id: '/localizacao',
+  path: '/localizacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MenuRoute = MenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReservasRoute = ReservasRouteImport.update({
+  id: '/reservas',
+  path: '/reservas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contactos': typeof ContactosRoute
+  '/galeria': typeof GaleriaRoute
+  '/localizacao': typeof LocalizacaoRoute
+  '/menu': typeof MenuRoute
+  '/reservas': typeof ReservasRoute
+  '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contactos': typeof ContactosRoute
+  '/galeria': typeof GaleriaRoute
+  '/localizacao': typeof LocalizacaoRoute
+  '/menu': typeof MenuRoute
+  '/reservas': typeof ReservasRoute
+  '/sobre': typeof SobreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contactos': typeof ContactosRoute
+  '/galeria': typeof GaleriaRoute
+  '/localizacao': typeof LocalizacaoRoute
+  '/menu': typeof MenuRoute
+  '/reservas': typeof ReservasRoute
+  '/sobre': typeof SobreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contactos'
+    | '/galeria'
+    | '/localizacao'
+    | '/menu'
+    | '/reservas'
+    | '/sobre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contactos'
+    | '/galeria'
+    | '/localizacao'
+    | '/menu'
+    | '/reservas'
+    | '/sobre'
+  id:
+    | '__root__'
+    | '/'
+    | '/contactos'
+    | '/galeria'
+    | '/localizacao'
+    | '/menu'
+    | '/reservas'
+    | '/sobre'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactosRoute: typeof ContactosRoute
+  GaleriaRoute: typeof GaleriaRoute
+  LocalizacaoRoute: typeof LocalizacaoRoute
+  MenuRoute: typeof MenuRoute
+  ReservasRoute: typeof ReservasRoute
+  SobreRoute: typeof SobreRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contactos': {
+      id: '/contactos'
+      path: '/contactos'
+      fullPath: '/contactos'
+      preLoaderRoute: typeof ContactosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria': {
+      id: '/galeria'
+      path: '/galeria'
+      fullPath: '/galeria'
+      preLoaderRoute: typeof GaleriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/localizacao': {
+      id: '/localizacao'
+      path: '/localizacao'
+      fullPath: '/localizacao'
+      preLoaderRoute: typeof LocalizacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/menu': {
+      id: '/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reservas': {
+      id: '/reservas'
+      path: '/reservas'
+      fullPath: '/reservas'
+      preLoaderRoute: typeof ReservasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactosRoute: ContactosRoute,
+  GaleriaRoute: GaleriaRoute,
+  LocalizacaoRoute: LocalizacaoRoute,
+  MenuRoute: MenuRoute,
+  ReservasRoute: ReservasRoute,
+  SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
