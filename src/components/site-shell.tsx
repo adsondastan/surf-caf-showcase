@@ -19,5 +19,5 @@ export function SiteFooter() {
 }
 
 export function WhatsAppFloat() {
-  return <a href={whatsappUrl("Olá Surf Café! Gostaria de saber mais informações.")} target="_blank" rel="noreferrer" className="fixed bottom-4 right-4 z-40 inline-flex h-12 items-center gap-2 bg-primary px-4 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-primary-foreground shadow-lg transition-transform hover:-translate-y-0.5"><MessageCircle className="size-4" /> <span className="hidden sm:inline">Falar no </span>WhatsApp</a>;
+  return <a href={whatsappUrl("Olá Surf Café! Gostaria de saber mais informações.")} target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp" className="fixed bottom-4 right-4 z-40 inline-flex size-12 items-center justify-center bg-primary font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-primary-foreground shadow-lg transition-transform hover:-translate-y-0.5 sm:h-12 sm:w-auto sm:gap-2 sm:px-4"><MessageCircle className="size-5 sm:size-4" /> <span className="hidden sm:inline">Falar no WhatsApp</span></a>;
 }
