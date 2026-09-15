@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MapPin } from "lucide-react";
-import heroImage from "../assets/surf-cafe-architecture-demo.jpg";
+import heroAsset from "../assets/surf-cafe-fachada-oficial.jpg.asset.json";
 import coffeeImage from "../assets/surf-cafe-coffee-demo.jpg";
 import tableImage from "../assets/surf-cafe-table-demo.jpg";
 import { restaurant, featuredMenu } from "../data/restaurant";
@@ -28,9 +28,8 @@ function Index() {
     <div className="bg-background text-foreground">
       <section className="relative mx-auto max-w-[1600px]">
         <div className="aspect-[3/4] w-full overflow-hidden bg-muted md:aspect-[16/9] lg:aspect-[2/1]">
-          <img src={heroImage} width={1080} height={1440} fetchPriority="high" className="h-full w-full object-cover" alt="Imagem de demonstração de um café contemporâneo com vegetação tropical" />
+          <img src={heroAsset.url} width={1079} height={559} fetchPriority="high" className="h-full w-full object-cover" alt="Fachada oficial do Surf Café em Nampula" />
         </div>
-        <p className="absolute right-4 top-4 bg-background/90 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.18em] text-muted-foreground md:right-8 md:top-8">Imagem de demonstração</p>
         <div className="relative z-10 mx-5 -mt-28 max-w-3xl bg-background px-5 pb-7 pt-8 md:mx-12 md:-mt-44 md:px-10 lg:mx-20">
           <div className="animate-reveal flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-brand-soft"><MapPin className="size-3" />Nampula, Moçambique</div>
           <h1 className="animate-reveal mt-5 flex flex-col font-serif text-[clamp(4.6rem,18vw,10rem)] font-extrabold italic leading-[0.78] tracking-normal [animation-delay:100ms]"><span>SURF</span><span className="pl-8 md:pl-20">CAFÉ</span></h1>

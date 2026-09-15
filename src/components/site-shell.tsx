@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, MessageCircle, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { restaurant, whatsappUrl } from "../data/restaurant";
+import whatsappAsset from "../assets/whatsapp.jpeg.asset.json";
 
 const links = [
   ["Início", "/"], ["Sobre", "/sobre"], ["Menu", "/menu"], ["Galeria", "/galeria"],
@@ -19,5 +20,5 @@ export function SiteFooter() {
 }
 
 export function WhatsAppFloat() {
-  return <a href={whatsappUrl("Olá Surf Café! Gostaria de saber mais informações.")} target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp" className="fixed bottom-4 right-4 z-40 inline-flex size-12 items-center justify-center bg-primary font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-primary-foreground shadow-lg transition-transform hover:-translate-y-0.5 sm:h-12 sm:w-auto sm:gap-2 sm:px-4"><MessageCircle className="size-5 sm:size-4" /> <span className="hidden sm:inline">Falar no WhatsApp</span></a>;
+  return <a href={whatsappUrl("Olá Surf Café! Gostaria de saber mais informações.")} target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp" className="fixed bottom-4 right-4 z-40 inline-flex size-14 items-center justify-center overflow-hidden rounded-full shadow-lg transition-transform hover:-translate-y-0.5"><img src={whatsappAsset.url} width={196} height={196} className="h-full w-full object-cover" alt="" /></a>;
 }
